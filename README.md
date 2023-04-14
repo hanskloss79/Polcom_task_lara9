@@ -44,5 +44,13 @@ In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_
 
 Type http://127.0.0.1:8000 in Your browser.  
 
+### 11. Add few users with 2FA authentication enabled - Rejestracja option.
+
+### 12. Now You can seed database with 100k of posts
+
+    php artisan db:seed
+
+### 13. When User will be logged in with two-factor authentication User's posts will be displayed on User's panel.
+
 ## That is all you need to get started on a project.
 
