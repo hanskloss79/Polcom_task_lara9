@@ -4,6 +4,11 @@
 
 @section('content')
     <div class="container">
+        @if(Auth::user()->two_factor_secret=="")
+            <h3 class="text-danger"><strong>Aby móc korzystać z serwisu należy włączyć autentykację dwuetapową w profilu użytkownika</strong></h3>
+            <a type="button" href="{{ route('profile.edit') }}" 
+            class="btn btn-warning btn-sm">{{ __('Edycja profilu użytkownika') }}</a>
+        @else
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -22,11 +27,12 @@
                         
                         <h6>{{ __('Uwierzytelnianie dwuetapowe ')}} {{ Auth::user()->two_factor_secret=="" ? 'wyłączone' : 'włączone' }}</h6>
                         
-                            @if(Auth::user()->two_factor_secret!="")
                             <?php
-                            $posts = DB::table('posts')
-                            ->select('id','title', 'created_at')->where('user_id', Auth::user()->id)
-                            ->paginate(10); 
+                            //$posts = DB::table('posts')
+                            //->select('id','title', 'created_at')->where('user_id', Auth::user()->id)
+                            //->paginate(10); 
+                            $posts = App\Models\Post::where('user_id', Auth::user()->id)
+                                ->paginate(10);
                             //dd($posts);
                             ?>
                             <table class="table table-bordered">
@@ -45,10 +51,11 @@
                                 @endforeach
                             </table> 
                             {{ $posts->links() }}
-                            @endif
+
                     </div>
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection
