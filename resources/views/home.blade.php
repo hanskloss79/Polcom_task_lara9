@@ -31,10 +31,32 @@
                             //$posts = DB::table('posts')
                             //->select('id','title', 'created_at')->where('user_id', Auth::user()->id)
                             //->paginate(10); 
-                            $posts = App\Models\Post::where('user_id', Auth::user()->id)
-                                ->paginate(10);
-                            //dd($posts);
+                            session_start();
+                            
+                            if(!array_key_exists('perPage', $_SESSION))
+                            {
+                                // domyślnie 10 elementów na stronie
+                                $_SESSION['perPage'] = 10;
+                            }
+                            if (array_key_exists('perPage', $_REQUEST) && $_SESSION['perPage'] != $_REQUEST['perPage'])
+                            {
+                                $_SESSION['perPage'] = $_REQUEST['perPage']; 
+                            }
+                            $perPage = $_SESSION['perPage'];
+                    
+                            $posts = App\Models\Post::where('user_id', Auth::user()->id)->paginate($perPage);
+                            // dd($posts);
                             ?>
+
+                            <form action="{{ route('home') }}" method="get">
+                                <label for="perPage">Ilość postów wyświetlanych na stronę:</label>
+                                <select class="mx-3 my-2"  name="perPage" onchange="this.form.submit()">
+                                <option value="10" {{ $posts->perPage() == 10 ? 'selected' : '' }}>10</option>
+                                <option value="20" {{ $posts->perPage() == 20 ? 'selected' : '' }}>20</option>
+                                <option value="50" {{ $posts->perPage() == 50 ? 'selected' : '' }}>50</option>
+                                <option value="100" {{ $posts->perPage() == 100 ? 'selected' : '' }}>100</option>
+                            </select>
+                            </form>
                             <table class="table table-bordered">
                                 
                                 <tr>

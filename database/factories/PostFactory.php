@@ -16,7 +16,7 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        // getting randomly the 'user_id' for Users in database who have
+        // getting randomly the 'user_id' of Users in database who have
         // two-factor authentication enabled 
         return [
             'title' => $this->faker->text(20),

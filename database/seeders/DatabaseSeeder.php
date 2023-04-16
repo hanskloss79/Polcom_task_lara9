@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(PostsTableSeeder::class);
+        if(\App\Models\User::all()->where('two_factor_secret',!null)->count()>0)
+            $this->call(PostsTableSeeder::class);
+        else
+            echo "Proszę wprowadzić do bazy przynajmniej jednego użytkownika z aktywnym uwierzytelnianiem dwuetapowym!!!";
     }
 }
