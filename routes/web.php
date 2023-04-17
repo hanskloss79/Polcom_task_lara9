@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('home', 'home')
-	->name('home')
-	->middleware(['auth']);
-
 Route::view('profile', 'profile.edit')
 	->name('profile.edit')
+	->middleware(['auth']);
+
+
+Route::get('home', 'App\Http\Controllers\PostController@index')
+	->name('home')
 	->middleware(['auth']);

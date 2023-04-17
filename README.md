@@ -44,9 +44,7 @@ In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_
 
 Type http://127.0.0.1:8000 in Your browser.  
 
-## 11. ```REQUIRED!!!!!``` Add few users with two factor authentication (2FA) enabled before seeding posts into database.
-
-### 12. Now You can seed database with 100k of posts
+### 11. Seed database with three users and 100k of posts.
 
     php artisan db:seed
 

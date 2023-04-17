@@ -15,7 +15,7 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        // using Factory
+        // wprowadzenie do bazy 100 tys. postów
         Post::factory()->count(20000)->create();
         Post::factory()->count(20000)->create();
         Post::factory()->count(20000)->create();

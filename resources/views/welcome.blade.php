@@ -74,6 +74,8 @@
                 @auth
                     <a href="{{ url('/home') }}">Panel użytkownika</a>
                 @else
+                    <a href="{{ route('home') }}">Posty Użytkownika</a>
+
                     <a href="{{ route('login') }}">Logowanie</a>
 
                     @if (Route::has('register'))

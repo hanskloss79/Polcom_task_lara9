@@ -16,13 +16,11 @@ class PostFactory extends Factory
      */
     public function definition()
     {
-        // getting randomly the 'user_id' of Users in database who have
-        // two-factor authentication enabled 
+        // getting randomly the 'user_id'
         return [
             'title' => $this->faker->text(20),
             'created_at' => date("Y-m-d H:i:s"),
-            'user_id' => \App\Models\User::all()
-                ->where('two_factor_secret', !null)->random()->id,
+            'user_id' => \App\Models\User::all()->random()->id,
         ];
     }
 }
