@@ -48,7 +48,7 @@ Type http://127.0.0.1:8000 in Your browser.
 
     php artisan db:seed
 
-### 13. When User will be logged in with two factor authentication User's posts will be displayed on User's panel.
+### 12. When User will be logged in with two factor authentication User's posts will be displayed on User's panel.
 
 ## That is all you need to get started on a project.
 
